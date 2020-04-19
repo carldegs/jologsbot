@@ -1,0 +1,28 @@
+{
+  "name": "jologsbot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run build:ts",
+    "watch": "watch \"npm run build:ts\" ./src",
+    "build:ts": "tsc && node build/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "carldegs",
+  "license": "ISC",
+  "dependencies": {
+    "@types/express": "^4.17.6",
+    "@types/lodash": "^4.14.150",
+    "@types/ws": "^7.2.4",
+    "discord.js": "^12.2.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "lodash": "^4.17.15",
+    "typescript": "^3.8.3",
+    "watch": "^1.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.3"
+  }
+}
