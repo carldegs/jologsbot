@@ -1,0 +1,2 @@
+# jologsbot
+Discord quiz bot
