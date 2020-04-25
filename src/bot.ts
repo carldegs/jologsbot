@@ -3,6 +3,7 @@ import { COMMANDS, cb, MESSAGES } from "./constants";
 import { JBGame, ERR_DUPLICATE_USER } from "./jb-game";
 import { JBGames, ERR_DUPLICATE_GAME, ERR_GAME_NOT_FOUND } from "./jb-games";
 import { pluralize } from "./helpers";
+import { JBScore } from "./types";
 
 export class Bot {
   private games = new JBGames();
@@ -23,7 +24,7 @@ export class Bot {
             return this.startGame(msg);
           case COMMANDS.STOP_GAME:
             return this.stopGame(msg);
-          case '@jologsbot g':
+          case "@jologsbot g":
             this.initializeGame(msg);
             this.joinGame(msg);
             this.startGame(msg);
@@ -129,7 +130,18 @@ export class Bot {
   }
 
   checkAnswer(msg: Message) {
+    const { channel, author, cleanContent } = msg;
     if (this.games.gameHasUser(msg.channel.id, msg.author.id)) {
+      this.games.checkAnswer(channel.id, author.id, cleanContent, {
+        success: (answer: string, scores: JBScore[]) => {
+          channel.send(
+            `May tama ka ${author.username}!\nAnswer: ${answer}\n\n${scores.map(
+              (item, i) => `${i + 1}. ${item.username} - ${item.score}`
+            )}`
+          );
+        },
+        error: (err: string) => channel.send(err),
+      });
     }
   }
 }

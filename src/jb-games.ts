@@ -95,4 +95,15 @@ export class JBGames {
     this.games = games;
     callback.success();
   }
+
+  public checkAnswer(channelID: string, userID: string, answer: string, callback: Callback) {
+    const game = this.getGame(channelID);
+
+    if (!game) {
+      callback.error(ERR_GAME_NOT_FOUND);
+      return;
+    }
+
+    game.checkAnswer(userID, answer, callback);
+  }
 }

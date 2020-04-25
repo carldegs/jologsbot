@@ -1,19 +1,21 @@
 export type Callback = { success: Function; error: Function };
 
 export type StartGameCallback = {
-  prompt: Function,
-  correct: Function,
-  timeout: Function,
-  finish: Function,
-  error: Function,
-}
+  prompt: Function;
+  correct: Function;
+  timeout: Function;
+  finish: Function;
+  error: Function;
+};
 
 export type JBGameOptions = {
-  numQuestions: number,
-  guessTime: number,
-}
+  numQuestions: number;
+  guessTime: number;
+};
 
 export type JBQuestion = {
-  question: string,
-  answer: string,
-}
+  question: string;
+  answer: string;
+};
+
+export type JBScore = { username: string; score: number };
